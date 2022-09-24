@@ -15,6 +15,9 @@ def square_root(num: float, decimal_places: int = 4) -> float:
     right: float = num + 1 # +1 is in case of decimal numbers: e.g. sqrt(0.05) = 0.22
     while left < right:
         midpoint: float = (left + right) / 2
+        # The only issue with this take is that when you have two very large decimals
+        # like 1e-15, floating point arithmetics get innacurate
+        # and so the program gets stuck on very large numbers
         rounded: float = round(midpoint * midpoint, decimal_places)
         if rounded < num:
             left = midpoint
